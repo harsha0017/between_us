@@ -1,4 +1,5 @@
-import 'package:between_us/app/routing/routes.dart';
+import 'package:between_us/app/dependencies/configure_dependencies.dart';
+import 'package:between_us/app/routing/app_router.dart';
 import 'package:between_us/app/theme/app_theme.dart';
 import 'package:flex_design/engine/flex_theme_engine.dart';
 import 'package:flex_design/extensions/extensions.dart';
@@ -11,14 +12,12 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  try {
-    final designManifest = await FlexThemeRepository().loadDefaultTheme(
-      'assets/data/design-manifest.json',
-    );
-    runApp(MyApp(designManifest: designManifest));
-  } catch (er) {
-    print(er);
-  }
+  await configureDependencies();
+
+  final designManifest = await FlexThemeRepository().loadDefaultTheme(
+    'assets/data/design-manifest.json',
+  );
+  runApp(MyApp(designManifest: designManifest));
 }
 
 class MyApp extends StatelessWidget {

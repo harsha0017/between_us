@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$HomeStateStore {
 
- bool get loading;
+ bool get loading; List<Post> get posts;
 /// Create a copy of HomeStateStore
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $HomeStateStoreCopyWith<HomeStateStore> get copyWith => _$HomeStateStoreCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeStateStore&&(identical(other.loading, loading) || other.loading == loading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is HomeStateStore&&(identical(other.loading, loading) || other.loading == loading)&&const DeepCollectionEquality().equals(other.posts, posts));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,loading);
+int get hashCode => Object.hash(runtimeType,loading,const DeepCollectionEquality().hash(posts));
 
 @override
 String toString() {
-  return 'HomeStateStore(loading: $loading)';
+  return 'HomeStateStore(loading: $loading, posts: $posts)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $HomeStateStoreCopyWith<$Res>  {
   factory $HomeStateStoreCopyWith(HomeStateStore value, $Res Function(HomeStateStore) _then) = _$HomeStateStoreCopyWithImpl;
 @useResult
 $Res call({
- bool loading
+ bool loading, List<Post> posts
 });
 
 
@@ -62,10 +62,11 @@ class _$HomeStateStoreCopyWithImpl<$Res>
 
 /// Create a copy of HomeStateStore
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? loading = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? loading = null,Object? posts = null,}) {
   return _then(_self.copyWith(
 loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,posts: null == posts ? _self.posts : posts // ignore: cast_nullable_to_non_nullable
+as List<Post>,
   ));
 }
 
@@ -147,10 +148,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool loading)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( bool loading,  List<Post> posts)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _HomeStateStore() when $default != null:
-return $default(_that.loading);case _:
+return $default(_that.loading,_that.posts);case _:
   return orElse();
 
 }
@@ -168,10 +169,10 @@ return $default(_that.loading);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool loading)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( bool loading,  List<Post> posts)  $default,) {final _that = this;
 switch (_that) {
 case _HomeStateStore():
-return $default(_that.loading);}
+return $default(_that.loading,_that.posts);}
 }
 /// A variant of `when` that fallback to returning `null`
 ///
@@ -185,10 +186,10 @@ return $default(_that.loading);}
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool loading)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( bool loading,  List<Post> posts)?  $default,) {final _that = this;
 switch (_that) {
 case _HomeStateStore() when $default != null:
-return $default(_that.loading);case _:
+return $default(_that.loading,_that.posts);case _:
   return null;
 
 }
@@ -200,10 +201,17 @@ return $default(_that.loading);case _:
 
 
 class _HomeStateStore implements HomeStateStore {
-  const _HomeStateStore({this.loading = false});
+  const _HomeStateStore({this.loading = false, final  List<Post> posts = const []}): _posts = posts;
   
 
 @override@JsonKey() final  bool loading;
+ final  List<Post> _posts;
+@override@JsonKey() List<Post> get posts {
+  if (_posts is EqualUnmodifiableListView) return _posts;
+  // ignore: implicit_dynamic_type
+  return EqualUnmodifiableListView(_posts);
+}
+
 
 /// Create a copy of HomeStateStore
 /// with the given fields replaced by the non-null parameter values.
@@ -215,16 +223,16 @@ _$HomeStateStoreCopyWith<_HomeStateStore> get copyWith => __$HomeStateStoreCopyW
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeStateStore&&(identical(other.loading, loading) || other.loading == loading));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _HomeStateStore&&(identical(other.loading, loading) || other.loading == loading)&&const DeepCollectionEquality().equals(other._posts, _posts));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,loading);
+int get hashCode => Object.hash(runtimeType,loading,const DeepCollectionEquality().hash(_posts));
 
 @override
 String toString() {
-  return 'HomeStateStore(loading: $loading)';
+  return 'HomeStateStore(loading: $loading, posts: $posts)';
 }
 
 
@@ -235,7 +243,7 @@ abstract mixin class _$HomeStateStoreCopyWith<$Res> implements $HomeStateStoreCo
   factory _$HomeStateStoreCopyWith(_HomeStateStore value, $Res Function(_HomeStateStore) _then) = __$HomeStateStoreCopyWithImpl;
 @override @useResult
 $Res call({
- bool loading
+ bool loading, List<Post> posts
 });
 
 
@@ -252,10 +260,11 @@ class __$HomeStateStoreCopyWithImpl<$Res>
 
 /// Create a copy of HomeStateStore
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? loading = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? loading = null,Object? posts = null,}) {
   return _then(_HomeStateStore(
 loading: null == loading ? _self.loading : loading // ignore: cast_nullable_to_non_nullable
-as bool,
+as bool,posts: null == posts ? _self._posts : posts // ignore: cast_nullable_to_non_nullable
+as List<Post>,
   ));
 }
 

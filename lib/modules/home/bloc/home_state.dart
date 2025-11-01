@@ -15,14 +15,17 @@ class OnLoading extends HomeState {
 }
 
 class OnException extends HomeState {
-  OnException({
-    required super.store,
-  });
+  OnException({required super.store});
+}
+
+class OnLoaded extends HomeState {
+  OnLoaded({required super.store});
 }
 
 @freezed
 sealed class HomeStateStore with _$HomeStateStore {
   const factory HomeStateStore({
     @Default(false) bool loading,
+    @Default([]) List<Post> posts,
   }) = _HomeStateStore;
 }
